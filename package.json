@@ -7,7 +7,7 @@
   "main": "server.js",
   "scripts": {
     "compile": "node_modules/.bin/tsc",
-    "test": "_mocha ./build/test/integration.test.js | bunyan",
+    "test": "_mocha ./build/test/server-api.test.js | bunyan",
     "start": "node_modules/.bin/nodemon ./build/server.js | bunyan"
   },
   "dependencies": {

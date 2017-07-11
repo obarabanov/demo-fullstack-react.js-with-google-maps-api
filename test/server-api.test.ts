@@ -55,7 +55,7 @@ describe('API endpoints', () => {
 
     it('provide properties list', (done) => {
         supertest(server)
-            .get( `/properties` )
+            .get( `/api/properties` )
             .end((err, response) => {
                 if (err) {
                     done(err);
