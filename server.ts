@@ -66,7 +66,7 @@ server.get(/\/public\/?.*/, restify.serveStatic({
  */
 const dataDir = './data';
 
-server.get('/properties', restify.serveStatic({
+server.get('/api/properties', restify.serveStatic({
     directory: dataDir,
     file: 'sampleData.json'    
 }));
@@ -87,4 +87,5 @@ server.get('/endpoint', function (req, res, next) {
 const cfgPort = 8000; //config.get('port') || 8000;
 server.listen(cfgPort, function () {
     logServer.info('%s listening at %s', server.name, server.url);
+    logServer.info('Open UI in browser at localhost:8000');
 });
