@@ -7,29 +7,31 @@ class Application extends React.Component {
     };
   }
 
-  //getData() {
   componentDidMount() {
-
     const json = fetch('/api/properties');
     json
       .then(data => data.json())
       .then(arr => {
-        console.info(`Loaded ${arr.length} items.`);
+        console.info(`Loaded ${arr.length} data items.`);
         this.setState({
           arrProperties: arr
         });
       })
       .catch(err => console.error(err));
-
   }
-
 
   render() {
 
     const rows = this.state.arrProperties
       .map((value, index) =>
         <tr key={index}>
-          <td>{value.owner}</td>
+          <td>{value.owner.split(/\s+/)
+                .map( function(word) { 
+                  //console.log( word );
+                  return word.charAt(0).toUpperCase() + word.substr(1);
+                })
+                .join(' ')
+          }</td>
           <td>
             {value.address.line1}<br/>
             {value.address.line2 && 
@@ -49,7 +51,7 @@ class Application extends React.Component {
             <br/>
             {value.address.country}
           </td>
-          <td>{value.incomeGenerated}</td>
+          <td>{parseFloat(value.incomeGenerated).toFixed(2)} £</td>
         </tr>
       );
     
@@ -57,14 +59,14 @@ class Application extends React.Component {
       <div className="App">
 
         <div className="App-header">
-          <h2>UI goes here</h2>
+          <h2>Properties List</h2>
         </div>
 
         <table>
 
-          <caption>
+          {/*<caption>
             Properties List
-          </caption>
+          </caption>*/}
 
           <colgroup>
             <col id="owner" />
@@ -85,11 +87,6 @@ class Application extends React.Component {
           </tbody>
 
         </table>
-
-        { /*
-          <button onClick={this.getData.bind(this)}>Load data</button>
-
-        */}
 
       </div>
     );

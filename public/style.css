@@ -1,21 +1,26 @@
-body{padding:50px;font:14px "Lucida Grande",Helvetica,Arial,sans-serif}a{color:#00B7FF}
 
-/*
-form {
-    width: 100%;
-}
-*/
-
-form input[type="submit"] {
-    text-align: center;
-    width: 160px;
-    margin-left: 180px;
-
+body {
+    padding:20px;
+    font:14px "Lucida Grande",Helvetica,Arial,sans-serif
 }
 
-label {
-    display: inline-block;
-    width: 160px;
-    text-align: right;
-    padding-right: 10px;
-}​
+a {
+    color:#00B7FF
+}
+
+table { 
+    border-collapse: collapse; 
+}
+td, th {
+    border: 1px solid black;
+    padding: 10px;
+    vertical-align: top;
+}
+tr:nth-of-type(even) { background-color: lightblue; }
+
+col#owner {
+    width: 130px;
+}
+col#income {
+    width: 100px;
+}
