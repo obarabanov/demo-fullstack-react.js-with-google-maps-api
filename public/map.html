@@ -53,6 +53,7 @@
                 center: london
             });
 
+            //  drawing service area borders
             var area = new google.maps.Circle({
                 strokeColor: '#FF0000',
                 strokeOpacity: 0.8,
@@ -63,6 +64,21 @@
                 center: london,
                 radius: 20000
             });
+
+            //  parsing params & putting place marker
+            var qs = (location.search.length > 0 ? location.search.substring(1) : '');
+            if (qs.length > 0) {
+                var params = qs.split('&');
+                console.log(`params: ${params}`);
+
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: {
+                        lat: parseFloat( params[0].substr(4) ),
+                        lng: parseFloat( params[1].substr(4) )
+                    }
+                });
+            }
 
             var geocoder = new google.maps.Geocoder();
             document.getElementById('submit').addEventListener('click', function () {

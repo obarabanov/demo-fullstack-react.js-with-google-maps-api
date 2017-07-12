@@ -89,9 +89,7 @@ class Application extends React.Component {
               <div>
                 {`${value.coordinates}`}
                 <br />
-                {`${value.coordinates.lat()}`}
-                <br />
-                <a target="_blank" href="/public/map.html">show on map</a>
+                <a target="_blank" href={`/public/map.html?lat=${value.coordinates.lat()}&lng=${value.coordinates.lng()}`}>show on map</a>
               </div>
             }
           </td>
