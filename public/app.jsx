@@ -51,8 +51,16 @@ class Application extends React.Component {
 
   render() {
 
+    //const center = {lat: 51.5073835, lng: -0.1277801};
+    const center = new google.maps.LatLng( 51.5073835, -0.1277801 );
+    const radius = 20000;
+
     const rows = this.state.arrProperties
       .map((value, index) =>
+
+        // const lat = value.coordinates.lat(),
+        //       lng = value.coordinates.lng();
+
         <tr key={index}>
           <td>{value.owner.split(/\s+/)
             .map(function (word) {
@@ -83,15 +91,42 @@ class Application extends React.Component {
           <td>{parseFloat(value.incomeGenerated).toFixed(2)} £</td>
 
           <td>
-            Geocoding status: {value.geocodingStatus}
-            <br />
-            {value.coordinates &&
+
+            {/*Geocoding status: {value.geocodingStatus}
+            <br />*/}
+
+            {(value.geocodingStatus === 'OK') ? (
               <div>
-                {`${value.coordinates}`}
+                {/*{`${value.coordinates}`}*/}
+
+                { radius >= google.maps.geometry.spherical.computeDistanceBetween( center, value.coordinates ) ? (
+
+                  <div>
+                    <b>Yes</b>, withing area.
+                  </div> 
+
+                ) : (
+                  
+                  <div>
+                    <b>Out</b> of service area.
+                  </div> 
+
+                )}
+                Geocoded: {value.geocodingStatus}
+                <br />
                 <br />
                 <a target="_blank" href={`/public/map.html?lat=${value.coordinates.lat()}&lng=${value.coordinates.lng()}`}>show on map</a>
               </div>
-            }
+            ) : (
+              <div>
+                Automatic geocoding<br /> 
+                failed: {value.geocodingStatus}
+                <br /> 
+                <br /> 
+                <a target="_blank" href={`/public/map.html`}>Try to geocode manually</a>
+              </div>
+            )}
+            
           </td>
 
         </tr>
