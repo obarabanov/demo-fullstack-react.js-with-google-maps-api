@@ -58,9 +58,6 @@ class Application extends React.Component {
     const rows = this.state.arrProperties
       .map((value, index) =>
 
-        // const lat = value.coordinates.lat(),
-        //       lng = value.coordinates.lng();
-
         <tr key={index}>
           <td>{value.owner.split(/\s+/)
             .map(function (word) {
@@ -95,36 +92,36 @@ class Application extends React.Component {
             {/*Geocoding status: {value.geocodingStatus}
             <br />*/}
 
-            {(value.geocodingStatus === 'OK') ? (
+            { !value.geocodingStatus ? (
+              <div>pending..</div>
+            ) : 
+              
+              (value.geocodingStatus === 'OK') ? (
               <div>
                 {/*{`${value.coordinates}`}*/}
 
                 { radius >= google.maps.geometry.spherical.computeDistanceBetween( center, value.coordinates ) ? (
-
                   <div>
                     <b>Yes</b>, withing area.
                   </div> 
-
                 ) : (
-                  
                   <div>
                     <b>Out</b> of service area.
                   </div> 
-
                 )}
                 Geocoded: {value.geocodingStatus}
                 <br />
                 <br />
                 <a target="_blank" href={`/public/map.html?lat=${value.coordinates.lat()}&lng=${value.coordinates.lng()}`}>show on map</a>
               </div>
-            ) : (
-              <div>
-                Automatic geocoding<br /> 
-                failed: {value.geocodingStatus}
-                <br /> 
-                <br /> 
-                <a target="_blank" href={`/public/map.html`}>Try to geocode manually</a>
-              </div>
+              ) : (
+                <div>
+                  Automatic geocoding<br /> 
+                  failed: {value.geocodingStatus}
+                  <br /> 
+                  <br /> 
+                  <a target="_blank" href={`/public/map.html`}>Try to geocode manually</a>
+                </div>
             )}
             
           </td>
