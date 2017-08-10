@@ -36,22 +36,3 @@ the area we can service:
 
 lat: 51.5073835, lng: -0.1277801,
 radius: 20000, country: 'gb'
-
-How to run
-----------
-
-```
-npm install
-npm run compile
-npm start
-```
-
-Server's logs output will be pre-formatted to be readable.  
-
-Testing
--------
-
-To run integration test:
-
-```npm test```
-
