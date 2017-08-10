@@ -86,6 +86,6 @@ server.get('/endpoint', function (req, res, next) {
  */
 const cfgPort = 8000; //config.get('port') || 8000;
 server.listen(cfgPort, function () {
-    logServer.info('%s listening at %s', server.name, server.url);
-    logServer.info('Open UI in browser at localhost:8000');
+    logServer.info('%s listening at localhost:%s', server.name, cfgPort);
+    logServer.info('Open UI in browser at http://localhost:8000');
 });
